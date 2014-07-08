@@ -1,0 +1,17 @@
+name: virtualbox
+version: 0.0.1
+inherits: wercker/ruby@1.0.0
+type: main
+platform: ubuntu@12.04
+packages:
+  - ruby
+  - virtualbox@4.3
+keywords:
+  - ruby
+  - virtualbox
+script: |
+  sudo gem install bundler
+  sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian precise contrib" >> /etc/apt/sources.list'
+  wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
+  sudo apt-get update
+  sudo apt-get install -y dkms virtualbox-4.3
